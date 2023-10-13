@@ -6,6 +6,34 @@
     <ion-label style="font-size: 25px">l</ion-label>
   </ion-label>
   <ion-label style="position: absolute; top: 250px; font-size:30px">{{this.percentage}}%</ion-label>
+
+
+  <div style="display: flex; justify-content: center; margin-top: 100px">
+
+    <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
+      <path #svgPath class="value-chart"
+            d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+            transform="rotate(-135,18,18)"
+
+      />
+    </svg>
+
+    <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
+      <path class="outline-chart"
+            stroke-dasharray="75, 75"
+            d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+            transform="rotate(-135,18,18)"
+
+      />
+    </svg>
+
+  </div>
+
+
 </div>
 
 
@@ -18,57 +46,35 @@
 <!--  </div>-->
 <!--</div>-->
 
+<div>
+  <svg class="dashboard" viewBox="0 0 390 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0C63.0223 23.6979 105.65 30.2449 194 30.5C293.624 28.3889 337.962 22.3147 390 0V500H0V0Z"
+          fill="#181B29"/>
+  </svg>
 
-<svg class="dashboard" viewBox="0 0 390 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0 0C63.0223 23.6979 105.65 30.2449 194 30.5C293.624 28.3889 337.962 22.3147 390 0V500H0V0Z" fill="#181B29"/>
-</svg>
 
+  <div style="padding: 30px 50px 0 50px; margin-top:270px">
+    <ion-segment value="year">
+      <ion-segment-button value="year">
+        <ion-label>Year</ion-label>
+      </ion-segment-button>
 
-<div style="padding: 30px 50px 0 50px; margin-top:370px">
-  <ion-segment value="year">
-    <ion-segment-button value="year">
-      <ion-label>Year</ion-label>
-    </ion-segment-button>
+      <ion-segment-button value="month">
+        <ion-label>Month</ion-label>
+      </ion-segment-button>
 
-    <ion-segment-button value="month">
-      <ion-label>Month</ion-label>
-    </ion-segment-button>
+      <ion-segment-button value="week">
+        <ion-label>Week</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-    <ion-segment-button value="week">
-      <ion-label>Week</ion-label>
-    </ion-segment-button>
-  </ion-segment>
 </div>
 
-
-<!--<ion-content style="background-color: red">-->
 <div class="chart-container" style="position: relative; z-index: 999">
   <canvas id="MyChart">{{ chart }}</canvas>
 </div>
 
 
-<div style="display: flex; justify-content: center ;position: relative; margin-top: -720px">
 
-  <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
-    <path #svgPath class="value-chart"
-          d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-          transform="rotate(-135,18,18)"
-
-    />
-  </svg>
-
-  <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
-    <path class="outline-chart"
-          stroke-dasharray="75, 75"
-          d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-          transform="rotate(-135,18,18)"
-
-    />
-  </svg>
-
-</div>
 

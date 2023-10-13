@@ -25,13 +25,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
 
-    this.api.get("http://localhost:5169/WaterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
+    this.api.get("http://localhost:5169/HomeMatic/waterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
       console.log(result);
       this.percentage = parseInt(result.toString()) - 10;
       this.liters = Math.round(this.litersMax * (this.percentage / 100));
     });
 
-    this.api.get("http://localhost:5169/History").subscribe(result => {
+    this.api.get("http://localhost:5169/HomeMatic/history").subscribe(result => {
 
       if (Array.isArray(result)) {
         this.percentValues = result.map(item => item.Percent.toString());
@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.error("Response is not an array.");
       }
     });
+
+    // this.createChart(this.percentValues, this.dataValues)
 
 
   }
