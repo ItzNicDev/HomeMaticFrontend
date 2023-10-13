@@ -1,0 +1,27 @@
+@font-face {
+  font-family: ledFont;
+  src: url(../assets/fonts/led-counter-7.regular.ttf);
+}
+
+
+.values {
+  text-align: center;
+  margin-top: 370px;
+  font-family: ledFont, serif;
+  font-size: 40px;
+}
+
+
+.customBackground {
+  backdrop-filter: blur(0px);
+  background-color: #272946;
+  background-size: cover;
+  background-repeat: no-repeat;
+  //background-position-y: -100px;
+  background-image: url("../../../app/src/assets/svg/wavesBackground.svg");
+}
+
+
+
+
+

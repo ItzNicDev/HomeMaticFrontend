@@ -1,0 +1,74 @@
+<div style="display: flex; justify-content: center">
+
+
+  <ion-label style="position: absolute; top: 170px">
+    <ion-label>{{this.liters}}</ion-label>
+    <ion-label style="font-size: 25px">l</ion-label>
+  </ion-label>
+  <ion-label style="position: absolute; top: 250px; font-size:30px">{{this.percentage}}%</ion-label>
+</div>
+
+
+<!--<div style="display: flex;justify-content: center">-->
+<!--  <div style="position: absolute; top: 90px">-->
+<!--    <svg xmlns="http://www.w3.org/2000/svg" width="199" height="199" viewBox="0 0 199 199" fill="none">-->
+<!--      <path d="M33.0135 165.986C30.8758 168.124 27.3975 168.134 25.3805 165.882C13.5154 152.634 5.39442 136.419 1.91186 118.911C-1.92736 99.6104 0.0430672 79.6042 7.57399 61.423C15.1049 43.2417 27.8581 27.702 44.2208 16.7688C60.5835 5.83557 79.8208 -2.34673e-07 99.5 0C119.179 2.34673e-07 138.417 5.83557 154.779 16.7688C171.142 27.702 183.895 43.2418 191.426 61.423C198.957 79.6042 200.927 99.6104 197.088 118.911C193.606 136.419 185.485 152.634 173.619 165.882C171.603 168.134 168.124 168.124 165.986 165.986V165.986C163.849 163.849 163.863 160.393 165.865 158.128C176.207 146.421 183.291 132.16 186.351 116.776C189.767 99.5982 188.014 81.7934 181.311 65.6126C174.609 49.4318 163.259 35.6019 148.697 25.8716C134.135 16.1414 117.014 10.9479 99.5 10.9479C81.9861 10.9479 64.8654 16.1414 50.3031 25.8716C35.7408 35.6019 24.3908 49.4318 17.6885 65.6126C10.9862 81.7934 9.23261 99.5982 12.6494 116.776C15.7095 132.16 22.7935 146.421 33.1354 158.128C35.137 160.393 35.1513 163.849 33.0135 165.986V165.986Z" fill="#D9D9D9"/>-->
+<!--      <path d="M33.0135 165.986C30.8758 168.124 27.3974 168.134 25.3805 165.882C16.1996 155.631 9.2311 143.571 4.93759 130.455C0.075563 115.602 -1.2194 99.8128 1.15763 84.3663C3.53465 68.9198 9.51681 54.2505 18.6194 41.5467C26.6577 30.3284 36.9297 20.9214 48.7678 13.905C51.3685 12.3636 54.6831 13.4187 56.0792 16.1002V16.1002C57.4753 18.7817 56.423 22.0727 53.8328 23.6318C43.515 29.8423 34.5552 38.103 27.5187 47.9232C19.4176 59.2292 14.0936 72.2845 11.9782 86.0315C9.86268 99.7784 11.0152 113.83 15.3422 127.049C19.1007 138.53 25.1624 149.103 33.1355 158.128C35.1371 160.394 35.1513 163.849 33.0135 165.986V165.986Z" fill="#E68A00"/>-->
+<!--    </svg>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<svg class="dashboard" viewBox="0 0 390 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0C63.0223 23.6979 105.65 30.2449 194 30.5C293.624 28.3889 337.962 22.3147 390 0V500H0V0Z" fill="#181B29"/>
+</svg>
+
+
+<div style="padding: 30px 50px 0 50px; margin-top:370px">
+  <ion-segment value="year">
+    <ion-segment-button value="year">
+      <ion-label>Year</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="month">
+      <ion-label>Month</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="week">
+      <ion-label>Week</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+
+<!--<ion-content style="background-color: red">-->
+<div class="chart-container" style="position: relative; z-index: 999">
+  <canvas id="MyChart">{{ chart }}</canvas>
+</div>
+
+
+<div style="display: flex; justify-content: center ;position: relative; margin-top: -720px">
+
+  <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
+    <path #svgPath class="value-chart"
+          d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+          transform="rotate(-135,18,18)"
+
+    />
+  </svg>
+
+  <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
+    <path class="outline-chart"
+          stroke-dasharray="75, 75"
+          d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+          transform="rotate(-135,18,18)"
+
+    />
+  </svg>
+
+</div>
+
