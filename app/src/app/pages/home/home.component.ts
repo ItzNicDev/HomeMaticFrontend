@@ -12,7 +12,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public liters: number = 1240;
   public percentage: number = 25;
   public litersMax: number = 4550;
-  public chart: any;
+  public lineChart: any;
+  public testChart: any;
+
   public percentValues: string[] = [];
   public dataValues: string[] = [];
 
@@ -56,11 +58,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
+
+
+
+
   createChart(_percentValues: string[], _dataValues: string[]) {
 
-
-
-    this.chart = new Chart("MyChart", {
+    this.lineChart = new Chart("lineChart", {
       type: 'line',
 
       data: {
@@ -128,6 +132,49 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       }
     });
+
+    var value = 75
+
+    this.testChart = new Chart("testChart", {
+      type: 'pie',
+
+      data: {
+        labels: ["",""],
+        datasets: [
+          {
+            data: [value, 100-value],
+            borderRadius: 20,
+            borderColor: 'rgba(255,255,255,0.6)', // Ändern Sie die Randfarbe auf Blau
+            borderWidth: 0, // Ändern Sie die Randbreite
+            backgroundColor: [
+              "#ff355a",
+              "rgba(255,255,255,0.16)"
+            ],
+          },]
+      },
+      options: {
+        // aspectRatio: 1,
+        responsive: true,
+        // devicePixelRatio: 1,
+        cutout: 150,
+        plugins: {
+          tooltip: {
+            enabled: false
+          },
+          legend: {
+            display: false
+          }
+        }
+
+
+      }
+    });
+
+
+
+    this.testChart.canvas.style.height = '128px';
+    this.testChart.canvas.style.width = '128px';
+
 
   }
 
