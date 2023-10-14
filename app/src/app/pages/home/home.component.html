@@ -1,5 +1,6 @@
 
 
+
 <div style="display: flex; justify-content: center">
 
 
@@ -12,26 +13,15 @@
 
   <div style="display: flex; justify-content: center; margin-top: 100px">
 
-    <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
-      <path #svgPath class="value-chart"
-            d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-            transform="rotate(-135,18,18)"
 
-      />
-    </svg>
+    <div style="height: 200px; width: 200px; margin-bottom: 30px;   ">
 
-    <svg style="position: absolute" height="200" viewBox="0 0 36 36" class="circular-chart">
-      <path class="outline-chart"
-            stroke-dasharray="75, 75"
-            d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-            transform="rotate(-135,18,18)"
+      <canvas style="" id="testChart1">{{ ringChartPlaceholder }}</canvas>
 
-      />
-    </svg>
+      <canvas style="margin-top: -200px" id="testChart">{{ ringChart }}</canvas>
+
+    </div>
+
 
   </div>
 
@@ -46,7 +36,7 @@
   </svg>
 
 
-  <div style="padding: 30px 50px 0 50px; margin-top:270px">
+  <div style="padding: 30px 50px 0 50px; margin-top:30px">
     <ion-segment value="year">
       <ion-segment-button value="year">
         <ion-label>Year</ion-label>
@@ -71,8 +61,6 @@
 </div>
 
 
-
-<!--<canvas style="margin: 0 auto;" id="testChart">{{ testChart }}</canvas>-->
 
 
 
