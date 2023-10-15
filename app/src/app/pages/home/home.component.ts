@@ -1,63 +1,63 @@
-import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {Chart} from 'chart.js';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  public liters: number = 1240;
-  public percentage: number = 25;
+  public liters: number = 0;
+  public percentage: number = 0;
   public litersMax: number = 4550;
   public lineChart: any;
   public ringChart: any;
   public ringChartPlaceholder: any;
   public percentValues: string[] = [];
   public dataValues: string[] = [];
+  private subscriptions: Subscription[] = [];
 
-  @ViewChild('svgPath') svgPath: any;
-
+  public test: any;
 
   constructor(private api: ApiService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
+    this.subscriptions.push(
+      this.api.get("http://localhost:5169/HomeMatic/waterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
+        console.log(result);
+        this.percentage = parseInt(result.toString()) - 10;
+        this.test = this.percentage;
+        this.liters = Math.round(this.litersMax * (this.percentage / 100));
+        this.createRingChart(this.percentage)
+      }));
 
+    this.subscriptions.push(
+      this.api.get("http://localhost:5169/HomeMatic/history").subscribe(result => {
+        if (Array.isArray(result)) {
+          this.percentValues = result.map(item => item.Percent.toString());
+          this.dataValues = result.map(item => item.Date.toString());
+          this.createLineChart(this.percentValues, this.dataValues)
 
-    this.api.get("http://localhost:5169/HomeMatic/waterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
-      console.log(result);
-      this.percentage = parseInt(result.toString()) - 10;
-      this.liters = Math.round(this.litersMax * (this.percentage / 100));
-      this.createRingChart(this.percentage)
-
-    });
-
-    this.api.get("http://localhost:5169/HomeMatic/history").subscribe(result => {
-
-      if (Array.isArray(result)) {
-        this.percentValues = result.map(item => item.Percent.toString());
-        this.dataValues = result.map(item => item.Date.toString());
-        this.createLineChart(this.percentValues, this.dataValues)
-
-      } else {
-        console.error("Response is not an array.");
-      }
-    });
-
+        } else {
+          console.error("Response is not an array.");
+        }
+      }));
 
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
+  }
 
   ngAfterViewInit() {
-    const pathElement = this.svgPath.nativeElement;
-
-    pathElement.setAttribute('stroke-dasharray', (this.percentage * 1).toString() + ', 75');
 
   }
-
 
   createLineChart(_percentValues: string[], _dataValues: string[]) {
 
@@ -133,9 +133,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
-
   createRingChart(percent: number) {
-
 
     var value = percent
 
@@ -186,7 +184,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         labels: ["", ""],
         datasets: [
           {
-            data: [100, 138-100],
+            data: [100, 138 - 100],
             borderRadius: 10,
             borderColor: 'rgba(255,255,255,0.6)', // Ändern Sie die Randfarbe auf Blau
             borderWidth: 0, // Ändern Sie die Randbreite
@@ -221,6 +219,5 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   }
-
 
 }

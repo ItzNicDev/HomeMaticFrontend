@@ -8,9 +8,10 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from "./pages/home/home.component";
 import {NgChartsModule} from 'ng2-charts';
+import {CounterComponent} from "./components/counter/counter.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+    declarations: [AppComponent, HomeComponent, CounterComponent],
   imports: [BrowserModule, IonicModule.forRoot({mode:'ios'}), AppRoutingModule, NgChartsModule, HttpClientModule],
   providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],

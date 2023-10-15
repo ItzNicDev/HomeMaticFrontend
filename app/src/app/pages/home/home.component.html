@@ -1,14 +1,32 @@
-
-
-
 <div style="display: flex; justify-content: center">
 
 
   <ion-label style="position: absolute; top: 170px">
-    <ion-label>{{this.liters}}</ion-label>
-    <ion-label style="font-size: 25px">l</ion-label>
+    <ion-label>
+  <span style="display: inline-block;">
+
+      <app-counter [countUntil]="this.liters" [interval]="500"></app-counter>
+  </span>
+      <span>    <ion-label style="font-size: 25px">l</ion-label>
+</span>
+
+    </ion-label>
   </ion-label>
-  <ion-label style="position: absolute; top: 250px; font-size:30px">{{this.percentage}}%</ion-label>
+
+
+  <ion-label style="position: absolute; top: 250px; font-size:30px">
+  <span style="display: inline-block;">
+    <app-counter [countUntil]="this.percentage" [interval]="500"></app-counter>
+  </span>
+    <span>%</span>
+  </ion-label>
+
+
+  <!--  <ion-label style="position: absolute; top: 250px;margin-left: 40px; font-size:30px">%</ion-label>-->
+<!--</div>-->
+
+
+
 
 
   <div style="display: flex; justify-content: center; margin-top: 100px">
@@ -59,7 +77,6 @@
   <canvas id="lineChart">{{ lineChart }}</canvas>
 
 </div>
-
 
 
 
