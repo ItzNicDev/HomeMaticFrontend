@@ -1,6 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {interval, Subscription} from 'rxjs';
-import {takeWhile} from 'rxjs/operators';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-counter',
