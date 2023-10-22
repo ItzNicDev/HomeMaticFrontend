@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.api.get("http://localhost:5169/HomeMatic/waterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
+      this.api.get("http://vevapi.ddns.net:5169/HomeMatic/waterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
         console.log(result);
         this.percentage = parseInt(result.toString()) - 10;
         this.test = this.percentage;

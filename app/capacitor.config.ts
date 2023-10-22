@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'app',
   webDir: 'www',
   server: {
-    androidScheme: 'http'
+    androidScheme: 'http',
+    iosScheme: 'http'
   }
 };
 
