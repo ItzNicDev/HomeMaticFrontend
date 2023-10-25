@@ -1,7 +1,18 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {Chart} from 'chart.js';
 import {Subscription} from "rxjs";
+import {IonContent} from "@ionic/angular";
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-home',
@@ -18,25 +29,35 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   public ringChartPlaceholder: any;
   public percentValues: string[] = [];
   public dataValues: string[] = [];
-  private subscriptions: Subscription[] = [];
 
-  public test: any;
+  public allowScrolling: boolean = true;
 
-  constructor(private api: ApiService, private renderer: Renderer2) {
+  constructor(private api: ApiService, private toastService: ToastService) {
+  }
+
+  onTouchStart(event: TouchEvent) {
+    this.allowScrolling = false;
+  }
+
+  onTouchEnd(event: TouchEvent) {
+    this.allowScrolling = true;
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     this.subscriptions.push(
       this.api.get("http://vevapi.ddns.net:5169/HomeMatic/waterLevel?apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D&ip=192.168.178.43&deviceName=BidCos-RF.PEQ1605600%3A1.FILLING_LEVEL").subscribe(result => {
         console.log(result);
         this.percentage = parseInt(result.toString()) - 10;
-        this.test = this.percentage;
         this.liters = Math.round(this.litersMax * (this.percentage / 100));
         this.createRingChart(this.percentage)
       }));
 
     this.subscriptions.push(
-      this.api.get("http://localhost:5169/HomeMatic/history").subscribe(result => {
+      this.api.get("http://vevapi.ddns.net:5169/HomeMatic/history").subscribe(result => {
         if (Array.isArray(result)) {
           this.percentValues = result.map(item => item.Percent.toString());
           this.dataValues = result.map(item => item.Date.toString());
@@ -47,6 +68,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }));
 
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.ringChart.destroy();
+      this.lineChart.destroy();
+      this.ringChartPlaceholder.destroy();
+      this.loadData()
+      this.toastService.presentToast("top", "Reloaded Data Successfully!", 1000)
+      event.target.complete();
+    }, 1000);
   }
 
   ngOnDestroy() {
@@ -220,4 +252,5 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
+  private subscriptions: Subscription[] = [];
 }

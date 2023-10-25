@@ -1,83 +1,1 @@
-<div style="display: flex; justify-content: center">
-
-
-  <ion-label style="position: absolute; top: 170px">
-    <ion-label>
-  <span style="display: inline-block;">
-
-      <app-counter [countUntil]="this.liters" [interval]="500"></app-counter>
-  </span>
-      <span>    <ion-label style="font-size: 25px">l</ion-label>
-</span>
-
-    </ion-label>
-  </ion-label>
-
-
-  <ion-label style="position: absolute; top: 250px; font-size:30px">
-  <span style="display: inline-block;">
-    <app-counter [countUntil]="this.percentage" [interval]="500"></app-counter>
-  </span>
-    <span>%</span>
-  </ion-label>
-
-
-  <!--  <ion-label style="position: absolute; top: 250px;margin-left: 40px; font-size:30px">%</ion-label>-->
-<!--</div>-->
-
-
-
-
-
-  <div style="display: flex; justify-content: center; margin-top: 100px">
-
-
-    <div style="height: 200px; width: 200px; margin-bottom: 30px;   ">
-
-      <canvas style="" id="testChart1">{{ ringChartPlaceholder }}</canvas>
-
-      <canvas style="margin-top: -200px" id="testChart">{{ ringChart }}</canvas>
-
-    </div>
-
-
-  </div>
-
-
-</div>
-
-
-<div>
-  <svg class="dashboard" viewBox="0 0 390 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0C63.0223 23.6979 105.65 30.2449 194 30.5C293.624 28.3889 337.962 22.3147 390 0V500H0V0Z"
-          fill="#181B29"/>
-  </svg>
-
-
-  <div style="padding: 30px 50px 0 50px; margin-top:30px">
-    <ion-segment value="year">
-      <ion-segment-button value="year">
-        <ion-label>Year</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button value="month">
-        <ion-label>Month</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button value="week">
-        <ion-label>Week</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-</div>
-
-
-<div class="chart-container" style="position: relative; z-index: 999">
-  <canvas id="lineChart">{{ lineChart }}</canvas>
-
-</div>
-
-
-
-
+<ion-content [scrollY]="this.allowScrolling">  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">    <div style="height: 40px"></div>    <ion-refresher-content></ion-refresher-content>  </ion-refresher>  <!--  <ion-refresher-content></ion-refresher-content>-->  <div style="display: flex; justify-content: center">    <ion-label style="position: absolute; top: 170px">      <ion-label>        <span style="display: inline-block;">            <app-counter class="values" [countUntil]="this.liters" [interval]="500"></app-counter>        </span>        <span>             <ion-label class="values" style="font-size: 25px">l</ion-label>         </span>      </ion-label>    </ion-label>    <ion-label style="position: absolute; top: 250px; font-size:30px">  <span style="display: inline-block;">    <app-counter class="values" [countUntil]="this.percentage" [interval]="500"></app-counter>  </span>      <ion-label class="values">%</ion-label>    </ion-label>    <!--  <ion-label style="position: absolute; top: 250px;margin-left: 40px; font-size:30px">%</ion-label>-->    <!--</div>-->    <div style="display: flex; justify-content: center; margin-top: 100px">      <div style="height: 200px; width: 200px; margin-bottom: 30px;   ">        <canvas style="" id="testChart1">{{ ringChartPlaceholder }}</canvas>        <canvas style="margin-top: -200px" id="testChart">{{ ringChart }}</canvas>      </div>    </div>  </div>  <div>    <svg class="dashboard" viewBox="0 0 390 500" fill="none" xmlns="http://www.w3.org/2000/svg">      <path d="M0 0C63.0223 23.6979 105.65 30.2449 194 30.5C293.624 28.3889 337.962 22.3147 390 0V500H0V0Z"            fill="#181B29"/>    </svg>    <div style="padding: 30px 50px 0 50px; margin-top:30px">      <ion-segment value="year">        <ion-segment-button value="year">          <ion-label>Year</ion-label>        </ion-segment-button>        <ion-segment-button value="month">          <ion-label>Month</ion-label>        </ion-segment-button>        <ion-segment-button value="week">          <ion-label>Week</ion-label>        </ion-segment-button>      </ion-segment>    </div>  </div>  <div (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" class="chart-container"       style="position: relative; z-index: 999">    <canvas id="lineChart">{{ lineChart }}</canvas>  </div></ion-content>

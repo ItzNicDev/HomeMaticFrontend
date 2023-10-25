@@ -1,7 +1,29 @@
+@font-face {
+  font-family: ledFont;
+  src: url("../../../assets/fonts/led-counter-7.regular.ttf");
+}
+
+
+.values {
+  text-align: center;
+  margin-top: 370px;
+  font-family: ledFont, serif;
+  font-size: 40px;
+}
+
+
+ion-content {
+  --backdrop-filter: blur(0px);
+  //--background-color: #272946;
+  --background-size: cover;
+  --background-repeat: no-repeat;
+  --background: url("wavesBackground.svg");
+  --background-color: red;
+}
+
+
 .chart-container {
-
   padding: 20px;
-
 }
 
 .dashboard {
@@ -21,11 +43,10 @@
     width: 100%;
     //height: 100px;
     left: 50%;
-    transform: translateX(-50%)translateY(70%);
+    transform: translateX(-50%) translateY(70%);
 
   }
 }
-
 
 
 .circular-chart {
@@ -58,4 +79,10 @@
     stroke-dasharray: 0 100;
   }
 }
+
+
+
+
+
+
 
