@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       }));
 
     this.subscriptions.push(
-      this.api.get("http://vevapi.ddns.net:5169/HomeMatic/history").subscribe(result => {
+      this.api.get("http://vevapi.ddns.net:5169/HomeMatic/history?amount=200&apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D").subscribe(result => {
         if (Array.isArray(result)) {
           this.percentValues = result.map(item => item.Percent.toString());
           this.dataValues = result.map(item => item.Date.toString());
@@ -284,36 +284,36 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
-
   changeTimeSpan(timespan: any) {
 
-    if (this.debugMode) {
-      let lastResults = 0;
+    console.log("test")
+    let lastResults = 0;
 
-      switch (timespan) {
-        case 'week':
-          lastResults = 7;
-          break;
-        case  'month':
-          lastResults = 28;
-          break
-        case 'year':
-          lastResults : 365;
-          break
-      }
-
-      this.lineChart.destroy();
-      this.api.get("http://0.0.0.0:5169/HomeMatic/history?amount=" + lastResults).subscribe(result => {
-
-        if (Array.isArray(result)) {
-          this.percentValues = result.map(item => item.Percent.toString());
-          this.dataValues = result.map(item => item.Date.toString());
-          this.createLineChart(this.percentValues, this.dataValues)
-        } else {
-          console.error("Response is not an array.");
-        }
-      })
+    switch (timespan) {
+      case 'week':
+        lastResults = 7;
+        break;
+      case  'month':
+        lastResults = 28;
+        break
+      case 'year':
+        lastResults : 365;
+        break
     }
+
+
+    this.lineChart.destroy();
+    this.api.get("http://vevapi.ddns.net:5169/HomeMatic/history?amount=" + lastResults + "&apiKey=U2FsdGVkX1%2Fdp4YED4ae%2BQwg0BxU9ywlBNKeOjTBAmo%3D").subscribe(result => {
+
+      if (Array.isArray(result)) {
+        this.percentValues = result.map(item => item.Percent.toString());
+        this.dataValues = result.map(item => item.Date.toString());
+        this.createLineChart(this.percentValues, this.dataValues)
+      } else {
+        console.error("Response is not an array.");
+      }
+    })
+    // }
 
   }
 
